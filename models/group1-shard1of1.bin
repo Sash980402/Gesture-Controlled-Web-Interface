@@ -1,0 +1,22 @@
+import numpy as np
+
+# Define the shapes of the weights as specified in your model.json
+weights_shapes = {
+    "dense/kernel": (16, 64),   # Shape for dense/kernel
+    "dense/bias": (64,),        # Shape for dense/bias
+    "dense_1/kernel": (64, 32), # Shape for dense_1/kernel
+    "dense_1/bias": (32,),      # Shape for dense_1/bias
+    "dense_2/kernel": (32, 8),  # Shape for dense_2/kernel
+    "dense_2/bias": (8,)        # Shape for dense_2/bias
+}
+
+# Create a binary file
+with open('group1-shard1of1.bin', 'wb') as f:
+    for name, shape in weights_shapes.items():
+        # Generate random weights
+        # You can scale the random values if needed, e.g., np.random.rand(*shape) * 10
+        weights = np.random.rand(*shape).astype(np.float32)
+        # Write the weights to the file
+        f.write(weights.tobytes())
+
+print("Binary weights file created successfully.")
